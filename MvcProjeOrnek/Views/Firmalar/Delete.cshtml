@@ -1,0 +1,56 @@
+﻿@model MvcProjeOrnek.Models.firmalar
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+<div style="margin-left:50px;">
+    <h4>firmalar</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.firmaAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firmaAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.firmaAdres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firmaAdres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.firmaTelefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firmaTelefon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.plazaNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.plazaNo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" style="margin-bottom:10px;" /> |
+            @Html.ActionLink("Firma listesine dön", "Listele")
+        </div>
+    }
+</div>

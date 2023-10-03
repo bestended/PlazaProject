@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MvcProjeOrnek.Models.departmanlar>
+
+@{
+    ViewBag.Title = "Listele";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>Departman Listesi</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Adi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.firmaNo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.firmaNo)
+        </td>
+        <td>
+            @Html.ActionLink("Güncelle", "Edit", new { id=item.departmanNo }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.departmanNo }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

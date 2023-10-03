@@ -1,0 +1,63 @@
+﻿@model MvcProjeOrnek.Models.calisanlar
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+<div style="margin-left:50px;">
+    <h4>Çalışan Silme Ekranı</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.adSoyad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adSoyad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.maas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.departmanNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.departmanNo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="margin-bottom:10px;">
+            <input type="submit" value="Sil" class="btn btn-danger" /> |
+            @Html.ActionLink("Çalışan listesine geri dön", "Listele")
+        </div>
+    }
+</div>

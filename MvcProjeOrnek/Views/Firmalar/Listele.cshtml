@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MvcProjeOrnek.Models.firmalar>
+
+@{
+    ViewBag.Title = "Listele";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>Firma Listesi</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.firmaAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.firmaAdres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.firmaTelefon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.plazaNo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.firmaAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.firmaAdres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.firmaTelefon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.plazaNo)
+        </td>
+        <td>
+            @Html.ActionLink("Güncelle", "Edit", new { id=item.firmaNo }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.firmaNo }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

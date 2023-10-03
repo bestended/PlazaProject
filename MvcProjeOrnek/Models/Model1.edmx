@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="plazalarSet" EntityType="Model1.Store.plazalarSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="firmalarSet" EntityType="Model1.Store.firmalarSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="departmanlarSet" EntityType="Model1.Store.departmanlarSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="calisanlarSet" EntityType="Model1.Store.calisanlarSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KullanicilarSet" EntityType="Model1.Store.KullanicilarSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="plazalarfirmalar" Association="Model1.Store.plazalarfirmalar">
+      <End Role="plazalar" EntitySet="plazalarSet" />
+      <End Role="firmalar" EntitySet="firmalarSet" />
+    </AssociationSet>
+    <AssociationSet Name="firmalardepartmanlar" Association="Model1.Store.firmalardepartmanlar">
+      <End Role="firmalar" EntitySet="firmalarSet" />
+      <End Role="departmanlar" EntitySet="departmanlarSet" />
+    </AssociationSet>
+    <AssociationSet Name="departmanlarcalisanlar" Association="Model1.Store.departmanlarcalisanlar">
+      <End Role="departmanlar" EntitySet="departmanlarSet" />
+      <End Role="calisanlar" EntitySet="calisanlarSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="plazalarSet">
+    <Key>
+      <PropertyRef Name="plazaNo" />
+    </Key>
+    <Property Name="plazaNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="plazaAdi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="plazaAdres" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="plazaTelefon" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="firmalarSet">
+    <Key>
+      <PropertyRef Name="firmaNo" />
+    </Key>
+    <Property Name="firmaNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="firmaAdi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="firmaAdres" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="firmaTelefon" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="plazaNo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="departmanlarSet">
+    <Key>
+      <PropertyRef Name="departmanNo" />
+    </Key>
+    <Property Name="departmanNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="adres" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="telefon" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="firmaNo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="calisanlarSet">
+    <Key>
+      <PropertyRef Name="calisanNo" />
+    </Key>
+    <Property Name="calisanNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="adSoyad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="adres" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="telefon" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="maas" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="departmanNo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KullanicilarSet">
+    <Key>
+      <PropertyRef Name="kullaniciId" />
+    </Key>
+    <Property Name="kullaniciId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kullaniciAdi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="sifre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="role" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="plazalarfirmalar">
+    <End Role="plazalar" Type="Model1.Store.plazalarSet" Multiplicity="1" />
+    <End Role="firmalar" Type="Model1.Store.firmalarSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="plazalar">
+        <PropertyRef Name="plazaNo" />
+      </Principal>
+      <Dependent Role="firmalar">
+        <PropertyRef Name="plazaNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="firmalardepartmanlar">
+    <End Role="firmalar" Type="Model1.Store.firmalarSet" Multiplicity="1" />
+    <End Role="departmanlar" Type="Model1.Store.departmanlarSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="firmalar">
+        <PropertyRef Name="firmaNo" />
+      </Principal>
+      <Dependent Role="departmanlar">
+        <PropertyRef Name="firmaNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="departmanlarcalisanlar">
+    <End Role="departmanlar" Type="Model1.Store.departmanlarSet" Multiplicity="1" />
+    <End Role="calisanlar" Type="Model1.Store.calisanlarSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="departmanlar">
+        <PropertyRef Name="departmanNo" />
+      </Principal>
+      <Dependent Role="calisanlar">
+        <PropertyRef Name="departmanNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="plazalarSet" EntityType="Model1.plazalar" />
+          <EntitySet Name="firmalarSet" EntityType="Model1.firmalar" />
+          <EntitySet Name="departmanlarSet" EntityType="Model1.departmanlar" />
+          <EntitySet Name="calisanlarSet" EntityType="Model1.calisanlar" />
+          <AssociationSet Name="plazalarfirmalar" Association="Model1.plazalarfirmalar">
+            <End Role="plazalar" EntitySet="plazalarSet" />
+            <End Role="firmalar" EntitySet="firmalarSet" />
+          </AssociationSet>
+          <AssociationSet Name="firmalardepartmanlar" Association="Model1.firmalardepartmanlar">
+            <End Role="firmalar" EntitySet="firmalarSet" />
+            <End Role="departmanlar" EntitySet="departmanlarSet" />
+          </AssociationSet>
+          <AssociationSet Name="departmanlarcalisanlar" Association="Model1.departmanlarcalisanlar">
+            <End Role="departmanlar" EntitySet="departmanlarSet" />
+            <End Role="calisanlar" EntitySet="calisanlarSet" />
+          </AssociationSet>
+          <EntitySet Name="KullanicilarSet" EntityType="Model1.Kullanicilar" />
+        </EntityContainer>
+        <EntityType Name="plazalar">
+          <Key>
+            <PropertyRef Name="plazaNo" />
+          </Key>
+          <Property Name="plazaNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="plazaAdi" Type="String" Nullable="false" />
+          <Property Name="plazaAdres" Type="String" Nullable="false" />
+          <Property Name="plazaTelefon" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="firmalar">
+          <Key>
+            <PropertyRef Name="firmaNo" />
+          </Key>
+          <Property Name="firmaNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firmaAdi" Type="String" Nullable="false" />
+          <Property Name="firmaAdres" Type="String" Nullable="false" />
+          <Property Name="firmaTelefon" Type="String" Nullable="false" />
+          <Property Name="plazaNo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="departmanlar">
+          <Key>
+            <PropertyRef Name="departmanNo" />
+          </Key>
+          <Property Name="departmanNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adi" Type="String" Nullable="false" />
+          <Property Name="adres" Type="String" Nullable="false" />
+          <Property Name="telefon" Type="String" Nullable="false" />
+          <Property Name="firmaNo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="calisanlar">
+          <Key>
+            <PropertyRef Name="calisanNo" />
+          </Key>
+          <Property Name="calisanNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adSoyad" Type="String" Nullable="false" />
+          <Property Name="adres" Type="String" Nullable="false" />
+          <Property Name="telefon" Type="String" Nullable="false" />
+          <Property Name="maas" Type="String" Nullable="false" />
+          <Property Name="departmanNo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="plazalarfirmalar">
+          <End Type="Model1.plazalar" Role="plazalar" Multiplicity="1" />
+          <End Type="Model1.firmalar" Role="firmalar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="plazalar">
+              <PropertyRef Name="plazaNo" />
+            </Principal>
+            <Dependent Role="firmalar">
+              <PropertyRef Name="plazaNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="firmalardepartmanlar">
+          <End Type="Model1.firmalar" Role="firmalar" Multiplicity="1" />
+          <End Type="Model1.departmanlar" Role="departmanlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="firmalar">
+              <PropertyRef Name="firmaNo" />
+            </Principal>
+            <Dependent Role="departmanlar">
+              <PropertyRef Name="firmaNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="departmanlarcalisanlar">
+          <End Type="Model1.departmanlar" Role="departmanlar" Multiplicity="1" />
+          <End Type="Model1.calisanlar" Role="calisanlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departmanlar">
+              <PropertyRef Name="departmanNo" />
+            </Principal>
+            <Dependent Role="calisanlar">
+              <PropertyRef Name="departmanNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Kullanicilar">
+          <Key>
+            <PropertyRef Name="kullaniciId" />
+          </Key>
+          <Property Name="kullaniciId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullaniciAdi" Type="String" Nullable="false" />
+          <Property Name="sifre" Type="String" Nullable="false" />
+          <Property Name="role" Type="String" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="plazalarSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.plazalar)">
+        <MappingFragment StoreEntitySet="plazalarSet">
+          <ScalarProperty Name="plazaNo" ColumnName="plazaNo" />
+          <ScalarProperty Name="plazaAdi" ColumnName="plazaAdi" />
+          <ScalarProperty Name="plazaAdres" ColumnName="plazaAdres" />
+          <ScalarProperty Name="plazaTelefon" ColumnName="plazaTelefon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="firmalarSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.firmalar)">
+        <MappingFragment StoreEntitySet="firmalarSet">
+          <ScalarProperty Name="firmaNo" ColumnName="firmaNo" />
+          <ScalarProperty Name="firmaAdi" ColumnName="firmaAdi" />
+          <ScalarProperty Name="firmaAdres" ColumnName="firmaAdres" />
+          <ScalarProperty Name="firmaTelefon" ColumnName="firmaTelefon" />
+          <ScalarProperty Name="plazaNo" ColumnName="plazaNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="departmanlarSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.departmanlar)">
+        <MappingFragment StoreEntitySet="departmanlarSet">
+          <ScalarProperty Name="departmanNo" ColumnName="departmanNo" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="adres" ColumnName="adres" />
+          <ScalarProperty Name="telefon" ColumnName="telefon" />
+          <ScalarProperty Name="firmaNo" ColumnName="firmaNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="calisanlarSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.calisanlar)">
+        <MappingFragment StoreEntitySet="calisanlarSet">
+          <ScalarProperty Name="calisanNo" ColumnName="calisanNo" />
+          <ScalarProperty Name="adSoyad" ColumnName="adSoyad" />
+          <ScalarProperty Name="adres" ColumnName="adres" />
+          <ScalarProperty Name="telefon" ColumnName="telefon" />
+          <ScalarProperty Name="maas" ColumnName="maas" />
+          <ScalarProperty Name="departmanNo" ColumnName="departmanNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KullanicilarSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Kullanicilar)">
+        <MappingFragment StoreEntitySet="KullanicilarSet">
+          <ScalarProperty Name="kullaniciId" ColumnName="kullaniciId" />
+          <ScalarProperty Name="kullaniciAdi" ColumnName="kullaniciAdi" />
+          <ScalarProperty Name="sifre" ColumnName="sifre" />
+          <ScalarProperty Name="role" ColumnName="role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

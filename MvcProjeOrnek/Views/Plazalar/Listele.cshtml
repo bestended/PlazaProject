@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MvcProjeOrnek.Models.plazalar>
+
+@{
+    ViewBag.Title = "Listele";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>Plaza Listesi</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.plazaAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.plazaAdres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.plazaTelefon)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.plazaAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.plazaAdres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.plazaTelefon)
+        </td>
+        <td>
+            @Html.ActionLink("Güncelle", "Edit", new { id = item.plazaNo }, new { @class = "btn btn-warning" })  |
+            @Html.ActionLink("Sil", "Delete", new { id = item.plazaNo }, new { @class = "btn btn-danger" }) 
+        </td>
+    </tr>
+}
+
+</table>
